@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEOUL — 首爾深度旅遊指南 2025.08</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;
+  --white:#f7f5f0;
+  --cream:#ede9e0;
+  --gold:#b8975a;
+  --mid:#888;
+  --light:#ddd;
+  --red:#c0392b;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--black);line-height:1.6;font-size:15px}
+
+/* ── HERO ── */
+.hero{
+  background:var(--black);color:#fff;
+  min-height:90vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:60px 56px;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1600&h=900&fit=crop&auto=format&q=60');
+  background-size:cover;background-position:center;
+  opacity:0.35;
+}
+.hero-watermark{
+  position:absolute;right:-30px;bottom:-40px;
+  font-family:var(--serif);font-size:260px;font-weight:700;
+  color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;letter-spacing:-8px;
+}
+.hero-inner{position:relative;z-index:1;max-width:900px}
+.hero-eyebrow{
+  font-size:11px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.hero h1{
+  font-family:var(--serif);font-size:clamp(56px,8vw,110px);
+  font-weight:400;line-height:1.0;margin-bottom:28px;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{
+  display:flex;gap:32px;flex-wrap:wrap;
+  font-size:12px;letter-spacing:2px;color:rgba(255,255,255,0.4);
+}
+.hero-meta strong{color:rgba(255,255,255,0.8);font-weight:500}
+
+/* ── NAV ── */
+.nav{
+  background:#fff;border-bottom:1px solid var(--light);
+  position:sticky;top:0;z-index:100;
+  display:flex;overflow-x:auto;
+}
+.nav a{
+  padding:16px 24px;text-decoration:none;
+  color:var(--mid);font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;
+  cursor:pointer;
+}
+.nav a:hover{color:var(--black);border-bottom-color:var(--gold)}
+.nav a.active{color:var(--black);border-bottom-color:var(--gold);font-weight:600}
+.nav a[data-section="all"]{border-right:1px solid var(--light);color:var(--black)}
+.nav a[data-section="all"].active{background:var(--black);color:#fff;border-bottom-color:transparent}
+
+/* ── SECTION FILTER ── */
+.filterable{transition:opacity .25s, max-height .35s;overflow:hidden}
+.filterable.hidden{display:none}
+
+/* ── SECTION ── */
+.section{padding:80px 56px;max-width:1360px;margin:0 auto}
+.section-header{
+  display:flex;align-items:baseline;gap:16px;
+  border-bottom:1px solid var(--light);padding-bottom:20px;margin-bottom:52px;
+}
+.section-no{
+  font-family:var(--serif);font-size:11px;
+  letter-spacing:3px;color:var(--gold);
+}
+.section-title{font-family:var(--serif);font-size:34px;font-weight:400}
+.section-count{font-size:12px;color:var(--mid);margin-left:auto}
+/* ── COLLAPSIBLE ── */
+.section-header.collapsible{cursor:pointer;user-select:none}
+.toggle-arrow{
+  font-size:10px;color:var(--mid);padding-left:14px;
+  display:inline-block;transition:transform .3s ease;flex-shrink:0;
+}
+.section.collapsed .toggle-arrow{transform:rotate(180deg)}
+.section.collapsed .section-sub,
+.section.collapsed .grid{display:none}
+.section-sub{
+  font-size:13px;color:var(--mid);margin-top:-36px;margin-bottom:48px;
+  letter-spacing:.5px;
+}
+
+/* ── GRID ── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1px;background:var(--light);
+}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--white);overflow:hidden;transition:box-shadow .3s}
+.card:hover{box-shadow:0 8px 40px rgba(0,0,0,0.12)}
+.card-imgwrap{overflow:hidden;position:relative;height:200px}
+.card-img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s;filter:grayscale(15%);
+}
+.card:hover .card-img{transform:scale(1.04);filter:grayscale(0%)}
+.card-tag{
+  position:absolute;top:12px;left:12px;
+  background:var(--black);color:#fff;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 9px;
+}
+.card-tag.urgent{background:var(--red)}
+.card-tag.modern{background:#2c3e50}
+.card-tag.food{background:#6b4226}
+.card-tag.cafe{background:#4a4a4a}
+.card-tag.event{background:#8e44ad}
+.card-body{padding:22px}
+.card-district{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.card-name{font-size:17px;font-weight:600;margin-bottom:3px;line-height:1.3}
+.card-korean{font-size:12px;color:var(--mid);margin-bottom:10px}
+.card-desc{font-size:13px;color:#444;line-height:1.75;margin-bottom:14px}
+.card-footer{
+  border-top:1px solid var(--light);padding-top:11px;
+  font-size:11px;color:var(--mid);display:flex;flex-direction:column;gap:4px;
+}
+.card-footer span{display:flex;align-items:flex-start;gap:6px}
+.icon{font-size:12px;flex-shrink:0;margin-top:1px}
+
+/* ── FEATURED CARD (2-col span) ── */
+.card-feat{grid-column:span 2}
+.card-feat .card-imgwrap{height:300px}
+@media(max-width:680px){.card-feat{grid-column:span 1}}
+
+/* ── EVENTS TIMELINE ── */
+.timeline{position:relative;padding-left:0}
+.tl-line{
+  position:absolute;left:72px;top:0;bottom:0;
+  width:1px;background:var(--light);
+}
+.event{
+  display:grid;grid-template-columns:130px 1fr;
+  gap:36px;padding:36px 0;border-bottom:1px solid var(--light);
+  align-items:start;position:relative;
+}
+.event:last-child{border-bottom:none}
+.event-date{text-align:right;position:relative}
+.event-date::after{
+  content:'';position:absolute;right:-49px;top:8px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--gold);border:2px solid var(--white);
+  box-shadow:0 0 0 1px var(--gold);
+}
+.event-day{font-family:var(--serif);font-size:32px;font-weight:700;line-height:1}
+.event-month{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid)}
+.event-badge{
+  display:inline-block;margin-top:8px;
+  font-size:9px;letter-spacing:1.5px;padding:3px 8px;
+}
+.badge-urgent{background:var(--red);color:#fff}
+.badge-ongoing{background:var(--black);color:#fff}
+.badge-popup{background:#6b4226;color:#fff}
+.event-content h3{font-size:19px;font-weight:600;margin-bottom:4px}
+.event-location{font-size:12px;color:var(--gold);margin-bottom:10px;letter-spacing:.5px}
+.event-desc{font-size:13px;color:#444;line-height:1.75}
+.event-period{
+  display:inline-block;font-size:11px;color:var(--mid);
+  border:1px solid var(--light);padding:3px 10px;margin-top:10px;letter-spacing:.5px;
+}
+.event-img{
+  width:100%;max-width:260px;height:150px;
+  object-fit:cover;margin-top:14px;filter:grayscale(20%);
+}
+
+/* ── ITINERARY TABLE ── */
+.itinerary-table{width:100%;border-collapse:collapse;font-size:13px}
+.itinerary-table th{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  padding:12px 16px;text-align:left;background:var(--black);color:#fff;
+  font-weight:500;
+}
+.itinerary-table td{padding:14px 16px;border-bottom:1px solid var(--light);vertical-align:top}
+.itinerary-table tr:hover td{background:#f0ece4}
+.day-num{
+  font-family:var(--serif);font-size:22px;font-weight:700;
+  color:var(--gold);line-height:1;
+}
+.day-date{font-size:11px;color:var(--mid)}
+.itinerary-slot{margin-bottom:6px}
+.slot-time{font-size:10px;color:var(--gold);font-weight:600;letter-spacing:1px}
+.slot-place{font-size:13px;font-weight:500}
+.slot-note{font-size:11px;color:var(--mid)}
+.highlight-row td{background:#f7f0e6}
+
+/* ── TOOLS ── */
+.tools-bg{background:var(--black);color:#fff;padding:60px 56px}
+.tools-inner{max-width:1360px;margin:0 auto}
+.tools-title{
+  font-family:var(--serif);font-size:28px;font-weight:400;
+  color:#fff;margin-bottom:32px;padding-bottom:20px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.tools-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;
+  background:rgba(255,255,255,0.08);
+}
+.tool-item{
+  padding:24px;background:var(--black);
+  transition:background .2s;
+}
+.tool-item:hover{background:#1a1a1a}
+.tool-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.tool-url{font-size:11px;color:var(--gold);margin-bottom:8px}
+.tool-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--black);border-top:1px solid rgba(255,255,255,0.06);
+  padding:20px 56px;font-size:11px;color:rgba(255,255,255,0.25);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  letter-spacing:1px;
+}
+
+/* ── DIVIDER ── */
+.section-divider{
+  height:1px;background:var(--light);
+  max-width:1360px;margin:0 auto;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero{padding:40px 24px}
+  .section{padding:48px 24px}
+  .nav a{padding:14px 16px;font-size:10px}
+  .event{grid-template-columns:90px 1fr;gap:20px}
+  .event-date::after{right:-31px}
+  .tl-line{left:52px}
+  .tools-bg{padding:40px 24px}
+  footer{padding:16px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-watermark">서울</div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">深度旅遊指南 · 不普通版</p>
+    <h1>首爾<br><em>Seoul</em></h1>
+    <div class="hero-meta">
+      <span><strong>日期</strong> 2025.08.08 — 08.12</span>
+      <span><strong>主題</strong> 建築 × 歷史 × 在地 × 限定活動</span>
+      <span><strong>製作</strong> Nomo · 我出去一下就回來</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════
+     NAV
+══════════════════════════════ -->
+<nav class="nav">
+  <a data-section="all" class="active">全部</a>
+  <a data-section="spots">景點美術館</a>
+  <a data-section="food">咖啡廳餐廳</a>
+  <a data-section="shopping">購物</a>
+  <a data-section="events">8月活動</a>
+  <a data-section="itinerary">五日行程</a>
+  <a data-section="tools">旅遊工具</a>
+</nav>
+
+<!-- ══════════════════════════════
+     SECTION 1: 景點
+══════════════════════════════ -->
+<div class="section filterable" data-section="spots" id="spots">
+  <div class="section-header">
+    <span class="section-no">01</span>
+    <h2 class="section-title">景點 · 建築 · 美術館</h2>
+    <span class="section-count">建築 × 歷史 × 美術館 — 18 處</span>
+  </div>
+  <p class="section-sub">遠離弘大明洞，走進真正的首爾皺摺。</p>
+
+  <div class="grid">
+
+    <!-- 1. 아모레퍼시픽 본사 -->
+    <div class="card card-feat">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://images.adsttc.com/media/images/5cb6/90ee/284d/d152/6d00/013f/large_jpg/FEATURE_-923_10_Noshe_180212_N14.jpg" alt="아모레퍼시픽 본사">
+        <span class="card-tag modern">世界建築獎</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">龍山 · 신용산역</p>
+        <h3 class="card-name">아모레퍼시픽 본사</h3>
+        <p class="card-korean">AmorePacific Headquarters · 신용산역 도보 1분</p>
+        <p class="card-desc">David Chipperfield 設計，靈感來自韓國<strong>달항아리（月亮罐）</strong>。21,500根垂直百葉覆蓋立面，18公尺挑高大廳對一般民眾免費開放。2019年榮獲世界最佳高層建築獎，是首爾現代建築的最高水準之作。1~3樓設有美術館、圖書館、咖啡廳。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 용산구 한강대로 100</span>
+          <span><span class="icon">⏰</span> 平日 09:00–18:00 / 免費入場</span>
+          <span><span class="icon">💡</span> IG構圖：站在大廳中央往上拍，光線從百葉縫隙切割進來</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 서소문성지 역사박물관 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://thesoulofseoul.net/wp-content/uploads/2025/01/IMG_2907.webp" alt="서소문성지 역사박물관">
+        <span class="card-tag">地下衝擊</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">中區 · 서소문공원 지하</p>
+        <h3 class="card-name">서소문성지 역사박물관</h3>
+        <p class="card-korean">西小門殉教聖地歷史博物館</p>
+        <p class="card-desc">首爾最多天主教殉道的歷史現場，地下4層現代建築空間。天窗「하늘홀 Sky Hall」讓陽光垂直貫穿，衝擊力極強。完全免費，幾乎沒台灣遊客。多項建築設計大獎得主。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 중구 칠패로 5</span>
+          <span><span class="icon">⏰</span> 週二–日 09:30–17:30 / 免費</span>
+          <span><span class="icon">💡</span> 最佳拍攝：晴天正午，光線從天窗直射而下</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 圓丘壇 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://www.theseoulguide.com/wp-content/uploads/2019/05/hwangudan_altar_wongudan_altar_seoul_korea.jpg" alt="圓丘壇">
+        <span class="card-tag">帝國遺跡</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">中區 · 시청역</p>
+        <h3 class="card-name">圓丘壇 원구단</h3>
+        <p class="card-korean">大韓帝國天壇遺址 · 威斯汀朝鮮飯店後院</p>
+        <p class="card-desc">1897年高宗在此稱帝的天壇，藏在威斯汀朝鮮飯店庭院角落，幾乎被世人遺忘。一個朝代的野心被壓縮在幾坪大的院落裡。台灣遊客極少知道此地。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 중구 소공로 106 (웨스틴조선호텔 내)</span>
+          <span><span class="icon">⏰</span> 全天開放 / 免費</span>
+          <span><span class="icon">💡</span> 配合城市街景反差，是「消失的首爾」系列最佳素材</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 서대문형무소 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://tong.visitkorea.or.kr/cms/resource/55/3368055_image2_1.jpg" alt="서대문형무소">
+        <span class="card-tag">歷史現場</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">西大門區 · 독립문역</p>
+        <h3 class="card-name">西大門刑務所歷史館</h3>
+        <p class="card-korean">서대문형무소역사관</p>
+        <p class="card-desc">日據時代關押抗日志士的監獄，建築完整保留至今。暗房、刑具室、絞刑台全開放參觀。這不是觀光景點，是歷史現場——「沉默空間」拍攝系列的最佳地點。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 서대문구 통일로 251</span>
+          <span><span class="icon">⏰</span> 週二–日 09:30–18:00 / 成人 3,000₩</span>
+          <span><span class="icon">💡</span> 格子窗光影 + 石灰牆，每個角落都是強烈構圖</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 선릉 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Jeongneung%2C_view_from_the_Hongsalmun-_the_tomb_of_King_Jungjong%2C_at_the_Seonjeonneung_site.jpg" alt="선릉">
+        <span class="card-tag">都市異世界</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">江南區 · 선릉역</p>
+        <h3 class="card-name">선릉 · 성릉 宣陵靖陵</h3>
+        <p class="card-korean">江南 테헤란로 한복판의 조선 왕릉</p>
+        <p class="card-desc">朝鮮9代成宗和中宗的王陵，就藏在江南高樓叢林裡。進門後瞬間切換成500年古松森林，超高層辦公大樓與古代陵墓同框，是世界上最極端的城市對比構圖之一。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 강남구 선릉로100길 1</span>
+          <span><span class="icon">⏰</span> 09:00–17:30 / 火曜日 免費 / 平日 1,000₩</span>
+          <span><span class="icon">💡</span> 以王陵為前景、玻璃帷幕辦公大樓為背景拍攝</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 서울공예박물관 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://thesoulofseoul.net/wp-content/uploads/2022/08/IMG_5122.jpg" alt="서울공예박물관">
+        <span class="card-tag modern">改建空間</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">鍾路區 · 안국역</p>
+        <h3 class="card-name">서울공예박물관</h3>
+        <p class="card-korean">首爾工藝博物館 · 前安洞醫院群改建</p>
+        <p class="card-desc">日據時代紅磚建築群活化再生，2021年開幕。多棟建築圍成的院落與廊道，光線極美，是建築攝影的隱藏天堂。位置就在北村旁，但人流遠少於北村。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 종로구 율곡로3길 4</span>
+          <span><span class="icon">⏰</span> 週二–日 10:00–18:00 / 常設展免費</span>
+          <span><span class="icon">💡</span> 院落光影最佳時段：上午10點前</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 더현대 서울 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://images.adsttc.com/media/images/6255/cda3/3e4b/31af/ed00/000b/newsletter/68781-full_889-4_68781_sc_v2com.jpg?1649790355" alt="더현대 서울">
+        <span class="card-tag modern">室內建築</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">永登浦區 · 여의도역</p>
+        <h3 class="card-name">더현대 서울</h3>
+        <p class="card-korean">The Hyundai Seoul · 室內天空與植物園</p>
+        <p class="card-desc">天花板全面玻璃化，5層樓高的室內植物公園讓人忘記這是百貨公司。晴天光線從頂部傾瀉而下，從高處俯拍是首爾最獨特的室內構圖之一。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 영등포구 여의대로 108</span>
+          <span><span class="icon">⏰</span> 10:30–20:00（週末至21:00）</span>
+          <span><span class="icon">💡</span> 搭電扶梯到頂樓，往下俯拍室內植物區構圖最強</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 리움미술관 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/17/4e/86/leeum-leeum-samsung-museum.jpg?w=1200&h=-1&s=1" alt="리움미술관">
+        <span class="card-tag modern">三大師聯手</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">龍山區 · 한남동</p>
+        <h3 class="card-name">리움미술관</h3>
+        <p class="card-korean">Leeum Museum of Art · 삼성문화재단</p>
+        <p class="card-desc">三星文化財團私立美術館，由馬里歐·博塔、讓·努維爾、雷姆·庫哈斯三位大師分別設計三棟館舍。古典韓國器物與當代藝術同場展示，建築本身就是展覽。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 용산구 이태원로55길 60-16</span>
+          <span><span class="icon">⏰</span> 週二–日 10:00–18:00 / 週一休</span>
+          <span><span class="icon">💡</span> M1、M2、M3 三棟建築風格截然不同，值得逐一比對</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- APMA -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://www.apgroup.com/int/en/resource/images/misc/news/2021-02-23/content/image_2.jpg" alt="아모레퍼시픽미술관">
+        <span class="card-tag modern">企業美術館</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">龍山 · 신용산역</p>
+        <h3 class="card-name">아모레퍼시픽 미술관</h3>
+        <p class="card-korean">APMA — Amorepacific Museum of Art</p>
+        <p class="card-desc">David Chipperfield 設計的아모레퍼시픽本社 B1–2F，以亞洲美學為核心的企業美術館。進館免費，與本社大廳一起逛一個完美下午。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 용산구 한강대로 100 (본사 내)</span>
+          <span><span class="icon">⏰</span> 週二–日 10:00–18:00 / 免費（特展另計）</span>
+          <span><span class="icon">💡</span> 結合一樓大廳圖書館＋咖啡廳一起，省力又值得</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 光影美學博物館 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://world.seoul.go.kr/wp-content/uploads/2025/07/seoul-light-2025-summer-img-1.jpg" alt="光影美學博物館">
+        <span class="card-tag">沉浸光影</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">首爾 · 各展期地點不同</p>
+        <h3 class="card-name">光影美學博物館</h3>
+        <p class="card-korean">광영미학박물관 / 빛의시간</p>
+        <p class="card-desc">沉浸式光影投影美術館，以360度投影技術將Van Gogh、Monet等名畫轉化為空間體驗。穿素色服裝讓光影打在身上的構圖最強。展期、地點季節性更換，出發前查官網確認。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 最新展覽地點請查官網 / IG</span>
+          <span><span class="icon">⏰</span> 依各展場不同，建議提前購票</span>
+          <span><span class="icon">💡</span> 穿白色或素色衣服，光影投影效果最上相</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DDP -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg" alt="DDP">
+        <span class="card-tag modern">扎哈哈迪</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">中區 · 동대문역사문화공원역</p>
+        <h3 class="card-name">DDP 東大門設計廣場</h3>
+        <p class="card-korean">동대문디자인플라자 — Zaha Hadid Architects</p>
+        <p class="card-desc">Zaha Hadid 設計，無一銳角的流動銀色曲面建築，首爾最具未來感的城市地標。白天攝影、夜晚LED燈光秀都值得一訪。戶外廣場24小時開放，8月常有夏季活動。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 중구 을지로7길 2-6</span>
+          <span><span class="icon">⏰</span> 戶外24H / 展覽 10:00–21:00 / 部分免費</span>
+          <span><span class="icon">💡</span> 入夜後LED燈光矩陣最美，旁邊東大門可夜逛</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MMCA -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://www.mmca.go.kr/upload/main/2026/03/2026032010130325612936.jpg" alt="MMCA 국립현대미술관">
+        <span class="card-tag modern">國家美術館</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">鍾路區 · 경복궁역</p>
+        <h3 class="card-name">MMCA 國立現代美術館</h3>
+        <p class="card-korean">국립현대미술관 서울관 — 朝鮮軍部舊址</p>
+        <p class="card-desc">前朝鮮時代軍部地址改建，開放式庭院串聯各展館，本身就是一件公共藝術。韓國當代藝術的最高殿堂，每年多個重量級特展。緊鄰景福宮，可一日規劃兩處。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 종로구 삼청로 30</span>
+          <span><span class="icon">⏰</span> 週二–日 10:00–18:00（週五六至21:00）/ 상설전 2,000₩</span>
+          <span><span class="icon">💡</span> 館內咖啡廳在開放式庭院，喝咖啡同時感受空間</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 경복궁 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Gwanghwamun_20240413.jpg" alt="경복궁">
+        <span class="card-tag">朝鮮第一宮</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">鍾路區 · 경복궁역</p>
+        <h3 class="card-name">景福宮 경복궁</h3>
+        <p class="card-korean">朝鮮王朝建都600年的核心宮殿</p>
+        <p class="card-desc">勤政殿、慶會樓、香遠亭構成首爾最壯麗的歷史場景。清晨開門時入場或夜間特別開放（야간개장）的燈光氛圍，遠比人潮洶湧的午間更值得。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 종로구 사직로 161</span>
+          <span><span class="icon">⏰</span> 09:00–18:30 / 3,000₩；야간개장 名額有限另購</span>
+          <span><span class="icon">💡</span> 7-8月야간개장 在官網提前搶票，氣氛完全不同</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SeMA -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://tong.visitkorea.or.kr/cms/resource/47/3061547_image2_1.png" alt="서울시립미술관">
+        <span class="card-tag modern">殖民遺構再生</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">中區 · 시청역</p>
+        <h3 class="card-name">首爾市立美術館 SeMA</h3>
+        <p class="card-korean">서울시립미술관 서소문본관</p>
+        <p class="card-desc">1928年日本殖民時期法院建築，保留新羅式石柱外觀，內部全面改建為當代展覽空間。與서소문성지역사박물관步行3分鐘，適合一起規劃。常設展通常免費入場。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 중구 덕수궁길 61</span>
+          <span><span class="icon">⏰</span> 週二–日 10:00–20:00 / 免費（特展另計）</span>
+          <span><span class="icon">💡</span> 外牆石柱 + 現代白色展廳是殖民建築再利用的教科書</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ground Seesaw -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://ak-d.tripcdn.com/images/1mi4g224x98q0qkhvE201.jpg?proc=source/trip" alt="Ground Seesaw Seochon">
+        <span class="card-tag">西村小畫廊</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">鍾路區 · 경복궁역</p>
+        <h3 class="card-name">Ground Seesaw Seochon</h3>
+        <p class="card-korean">그라운드시소 서촌 — 新銳藝術藏身西村巷弄</p>
+        <p class="card-desc">藏在서촌（西村）小巷的私人藝廊，空間小而精準，以支持新銳藝術家為主。西村保留首爾最完整的日據時代民居街區，加上藝廊是一個完美的下午行程。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 종로구 자하문로7길 (서촌)</span>
+          <span><span class="icon">⏰</span> 週二–日 11:00–19:00 / 免費</span>
+          <span><span class="icon">💡</span> 周邊日式民居小巷拍巷弄感深度不輸北村</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 북촌한옥마을 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://i.ytimg.com/vi/LiPSw-3C4kE/maxresdefault.jpg" alt="북촌한옥마을">
+        <span class="card-tag">韓屋都市</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">鍾路區 · 안국역</p>
+        <h3 class="card-name">北村韓屋村</h3>
+        <p class="card-korean">북촌한옥마을 — 600座韓屋的山坡城市</p>
+        <p class="card-desc">景福宮與昌德宮之間的山坡上，600座韓屋密集形成首爾最知名的傳統街區。嘉會洞31番地的S型坡道俯瞰是IG最常見的韓國風景照之一，請平日清晨前往。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 종로구 가회동 · 계동 일대</span>
+          <span><span class="icon">⏰</span> 全天 / 免費（請保持安靜，住宅區）</span>
+          <span><span class="icon">💡</span> 06:00–08:00 清晨逛，光線最美且人潮最少</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 창덕궁 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://tong.visitkorea.or.kr/cms/resource/03/3092503_image2_1.jpg" alt="창덕궁">
+        <span class="card-tag">秘苑傳說</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">鍾路區 · 안국역</p>
+        <h3 class="card-name">昌德宮 창덕궁</h3>
+        <p class="card-korean">UNESCO 世界遺產 · 朝鮮皇族最後居所</p>
+        <p class="card-desc">聯合國世界遺產。後苑（秘苑）是朝鮮王朝最後一位皇族生活過的花園，古松、蓮池、亭閣組成首爾最深邃的場景。秘苑採導覽制，需事先預約名額。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 종로구 율곡로 99</span>
+          <span><span class="icon">⏰</span> 09:00–18:30 / 3,000₩ / 秘苑導覽另行預約</span>
+          <span><span class="icon">💡</span> 中文導覽場每週限定，提前一個月在 e-ticketing 搶票</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 이화여대 ECC -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://images.adsttc.com/media/images/5017/edc1/28ba/0d49/f500/1064/newsletter/stringio.jpg?1414475726" alt="이화여대 ECC">
+        <span class="card-tag modern">地底建築</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">西大門區 · 이대역</p>
+        <h3 class="card-name">梨花女大 ECC</h3>
+        <p class="card-korean">이화여자대학교 ECC — Dominique Perrault</p>
+        <p class="card-desc">法國建築師Dominique Perrault 設計，將整個校園廣場往地下挖深六層，形成巨大的城市峽谷。從地面只見兩道玻璃斜面，進入後才發現的巨大地下空間令人震撼。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 서대문구 이화여대길 52</span>
+          <span><span class="icon">⏰</span> 全天開放 / 免費</span>
+          <span><span class="icon">💡</span> 站在地面向下俯拍峽谷，或在底部向上拍玻璃天光</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════
+     SECTION 2: 咖啡廳 & 餐廳
+══════════════════════════════ -->
+<div class="section filterable" data-section="food" id="food">
+  <div class="section-header">
+    <span class="section-no">02</span>
+    <h2 class="section-title">在地網紅 咖啡廳 &amp; 餐廳</h2>
+    <span class="section-count">14 處 · 咖啡廳 + 餐廳全覆蓋</span>
+  </div>
+  <p class="section-sub">首爾本地 IG 創作者去的地方，不是給觀光客的地方。</p>
+
+  <div class="grid grid-3">
+
+    <!-- 세렌디피크닉 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://d12zq4w4guyljn.cloudfront.net/750_750_20250221080920_photo3_66668548d3c7.webp" alt="세렌디피크닉">
+        <span class="card-tag cafe">早午餐空間</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">龍山 · 원효로</p>
+        <h3 class="card-name">세렌디피크닉</h3>
+        <p class="card-korean">Serendypiknic · 18盤早午餐</p>
+        <p class="card-desc">龍山一帶目前最多本地人自主打卡的早午餐店，18道小菜組成的Brunch Plate視覺感極強。空間設計質感高，AmorePacific本社步行可達，可一起規劃。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 용산구 원효로 186 1층</span>
+          <span><span class="icon">⏰</span> 11:00–23:00 / 中休 15:00–17:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cafe Onion -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf5Hyl_WnBtMem76iZ9aMJXKkb5LePrSY5Lg&s" alt="카페 오니언 안국">
+        <span class="card-tag cafe">廢棄工廠改建</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">鍾路區 · 안국역</p>
+        <h3 class="card-name">카페 오니언 안국</h3>
+        <p class="card-korean">Cafe Onion Anguk · 廢棄軍需工廠改建</p>
+        <p class="card-desc">廢棄軍需工廠原址改建，工業廢墟質感 + 精緻烘焙。位置就在北村旁，卻比北村更有深度。庭院、廊道、斑駁牆面，每個角落都是構圖。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 종로구 계동길 5</span>
+          <span><span class="icon">⏰</span> 08:00–22:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anthracite -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://images.squarespace-cdn.com/content/v1/51c8b108e4b050e44c477323/1622537576993-HNYFIIRM603EZTVIKXWD/Greysuitcase+Seoul+Cafe+Series+-+Anthracite+Seogyo+%EC%95%A4%ED%8A%B8%EB%9F%AC%EC%82%AC%EC%9D%B4%ED%8A%B8+%EC%84%9C%EA%B5%90%EC%A0%90+01.jpg" alt="Anthracite Coffee">
+        <span class="card-tag cafe">鞋廠變咖啡廳</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">麻浦區 · 홍대입구역</p>
+        <h3 class="card-name">앤트러사이트 홍대점</h3>
+        <p class="card-korean">Anthracite Coffee Hongdae · 1970年代製鞋工廠</p>
+        <p class="card-desc">1970年代製鞋工廠幾乎原樣保留，生鏽鐵架、混凝土天花板、超高工業空間，比一般網美咖啡廳更有故事。咖啡豆來自自家烘豆所，品質扎實。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 마포구 동교로 211</span>
+          <span><span class="icon">⏰</span> 10:00–22:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 시누아즈 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://ugc-images.catchtable.co.kr/catchtable/shopinfo/sI5loz9P9IAdwBlPbTuZDpw/m/6d13db75863b4dffae429b12370996e5?resizeType=details500" alt="시누아즈">
+        <span class="card-tag food">自然酒隱藏店</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">延禧洞 · 연희로</p>
+        <h3 class="card-name">시누아즈 Restaurant Chinois</h3>
+        <p class="card-korean">法式中菜概念自然酒餐廳</p>
+        <p class="card-desc">隱藏在延禧洞住宅區的低調餐廳，Chinois是法語「中式」之意。昏暗燭光、精緻法式中菜、有趣自然酒單。本地高端夜晚口耳相傳的地方，觀光客幾乎不知道。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 서대문구 연희로 32-1</span>
+          <span><span class="icon">⏰</span> 晚間 18:00起 / 建議提前訂位</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 마장동 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/38/bf/f2/majang-meat-market.jpg?w=1200&h=-1&s=1" alt="마장동 축산물시장">
+        <span class="card-tag food">極致在地</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">城東區 · 마장역</p>
+        <h3 class="card-name">마장동 축산물시장</h3>
+        <p class="card-korean">馬場洞牛肉批發市場</p>
+        <p class="card-desc">首爾最大牛肉批發市場，攤位現場選肉後帶到旁邊燒烤店代烤。台灣遊客幾乎不知道此地存在。是「把自己活進首爾」等級的體驗，早上市場販售各部位也是拍攝好素材。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 성동구 마장로 210</span>
+          <span><span class="icon">⏰</span> 06:00–22:00 / 全年無休</span>
+          <span><span class="icon">💡</span> 選好肉 → 旁邊燒烤店代烤費約 3,000₩/人</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 노량진 수산시장 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Korea-Seoul-Noryangjin_Fish_Market-03.jpg" alt="노량진 수산시장">
+        <span class="card-tag food">清晨體驗</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">銅雀區 · 노량진역</p>
+        <h3 class="card-name">노량진 수산시장</h3>
+        <p class="card-korean">鷺梁津水產批發市場 · 凌晨拍賣現場</p>
+        <p class="card-desc">早上5~6點，批發商在現場大聲喊價競標活海鮮，整個場面壯觀而混亂。之後在市場2樓點一份生魚片早餐，那是首爾最在地的早晨之一，與明洞的觀光版完全不同次元。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 동작구 노량진로 12</span>
+          <span><span class="icon">⏰</span> 拍賣現場 05:00–06:30 / 市場 24H</span>
+          <span><span class="icon">💡</span> 帶一件防水外套，市場地板常濕</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blue Bottle 성수 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://kr.bluebottlecoffee.com/cdn/shop/articles/BBCK_SS_main_1600x1600_1e4b79e5-dfab-43d0-a335-49ac4f234cfe.jpg?crop=center&height=420&v=1775009444&width=420" alt="블루보틀 성수">
+        <span class="card-tag cafe">旗艦工業風</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">聖水洞 · 성수역</p>
+        <h3 class="card-name">블루보틀 성수점</h3>
+        <p class="card-korean">Blue Bottle Coffee Seongsu — 韓國最大旗艦店</p>
+        <p class="card-desc">Blue Bottle 在韓國最大旗艦店，空間設計融入聖水洞工業美學。獨家韓國限定飲品和甜點，自然成為聖水洞街區探索的起點或終點。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 성동구 뚝섬로1나길 11</span>
+          <span><span class="icon">⏰</span> 07:00–20:00</span>
+          <span><span class="icon">💡</span> 韓國限定 Matcha Oat Latte 必點，空間適合拍工業風</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cafe Highwaist Ikseon -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://media-cdn.tripadvisor.com/media/photo-m/1280/29/80/bb/73/caption.jpg" alt="Cafe Highwaist Ikseon">
+        <span class="card-tag cafe">익선동韓屋</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">鍾路區 · 종로3가역</p>
+        <h3 class="card-name">카페 하이웨스트 익선동</h3>
+        <p class="card-korean">Cafe Highwaist Ikseon — 韓屋改建手沖</p>
+        <p class="card-desc">藏在익선동韓屋街區的咖啡廳，古宅改建保留木樑結構。日式殖民時期韓屋的窗格與現代手沖咖啡形成奇妙對比。附近壁畫巷弄適合一起逛。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 종로구 수표로28길 (익선동)</span>
+          <span><span class="icon">⏰</span> 11:00–22:00</span>
+          <span><span class="icon">💡</span> 窗格透光構圖在IG熱門，上午光線最佳</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coffee Libre -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://media.timeout.com/images/103077400/750/422/image.jpg" alt="Coffee Libre">
+        <span class="card-tag cafe">精品豆先驅</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">延南洞 · 홍대입구역</p>
+        <h3 class="card-name">커피리브레</h3>
+        <p class="card-korean">Coffee Libre — 韓國精品咖啡先驅</p>
+        <p class="card-desc">韓國精品咖啡先驅之一，創辦人曾多次在國際咖啡競賽奪冠。強調產地溯源，沒有過度設計的商業感，全靠咖啡品質說話。問barista推薦當季豆款。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 마포구 연남동 (연남점)</span>
+          <span><span class="icon">⏰</span> 11:00–22:00</span>
+          <span><span class="icon">💡</span> 黑板豆款比菜單更值得讀，請barista推薦手沖</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 고기당 肉黨 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://cdn.prod.website-files.com/6772b615757c5de3138654fc/68c1698ea18dd2b4aaf3433e_Gogidang-00156-1.png" alt="고기당">
+        <span class="card-tag food">韓牛燒烤</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">江南 · 복수 분점</p>
+        <h3 class="card-name">고기당 肉黨</h3>
+        <p class="card-korean">고기당 — 肉의 黨，只賣牛</p>
+        <p class="card-desc">以「肉的黨」為概念的韓牛燒烤專門店，只賣牛，不賣豬。석쇠（鐵網）直烤保留油脂香氣，肉的選切與服務都有別於傳統燒肉店。首爾燒肉新世代代表。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 강남 일대 (複數分店)</span>
+          <span><span class="icon">⏰</span> 11:30–22:00（中休 15:00–17:00）</span>
+          <span><span class="icon">💡</span> 午間等心 Set 是性價比最高的入門選擇</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 산청숯불가든 山清 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://d12zq4w4guyljn.cloudfront.net/750_750_20260511053133_photo1_16e96d781cd1.webp" alt="산청숯불가든">
+        <span class="card-tag food">乙支路炭火</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">中區 · 을지로3가역</p>
+        <h3 class="card-name">산청숯불가든</h3>
+        <p class="card-korean">山清炭火燒烤 을지로 — 工業街老店</p>
+        <p class="card-desc">乙支路的傳奇炭火烤肉店，蒜頭猛火與豬頸肉香氣瀰漫小巷。老舊工業街區裡的老店，本地人午餐人龍排到門外。真實感比網紅燒肉店高出不同維度。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 중구 을지로3가 을지로11길 일대</span>
+          <span><span class="icon">⏰</span> 11:00–22:00</span>
+          <span><span class="icon">💡</span> 排隊是常態，平日11:30開門前到是最佳策略</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 숙성도 을지로 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://ugc-images.catchtable.co.kr/catchtable/shopinfo/srjJqbZ4kLszwzEuG4kll1w/e435eda29b474db291e8d72990abb1aa?detail750" alt="숙성도 을지로">
+        <span class="card-tag food">乾式熟成</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">中區 · 을지로역</p>
+        <h3 class="card-name">숙성도 을지로점</h3>
+        <p class="card-korean">Sukseongdo Euljiro — 乾式熟成豬肉專門</p>
+        <p class="card-desc">以숙성（乾式熟成）工法處理的목살（豬頸肉）脂肪紋理細密、入口即化，鮮味濃縮。骨邊里脊同樣是招牌。本地人口耳相傳，外國旅客幾乎不知道，但已在 Reddit 和 EatingSeoul 獲得極高評價。建議提前在 Catchtable 訂位。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 중구 저동2가 을지로 일대</span>
+          <span><span class="icon">⏰</span> 11:30–22:00（中休 15:00–17:00）</span>
+          <span><span class="icon">💡</span> 熟成목살＋骨邊里脊是必點，搭소금（鹽烤）吃出原味</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 신솔돈 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://i.autoreserve.com/thumb/1200x1200/restaurant_image/image/058/953/224/58953224/c46b06f5-dcda-457e-8d77-1f697b2c1341.jpeg?format=webp" alt="신솔돈">
+        <span class="card-tag food">新沙洞豬肉</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">江南區 · 신사역</p>
+        <h3 class="card-name">신솔돈</h3>
+        <p class="card-korean">新沙洞 生三層肉專門店</p>
+        <p class="card-desc">新沙洞的傳奇생삼겹살（生烤三層肉）專門店，豬肉來自特定農家直送。店員現場幫你料理、細膩服務，江南區少見的不裝腔做勢、純靠品質說話的燒烤店。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 강남구 신사동 (신사역 도보 5분)</span>
+          <span><span class="icon">⏰</span> 12:00–23:00</span>
+          <span><span class="icon">💡</span> 겉바속촉 外酥內嫩精髓，搭大蒜片芝麻葉包著吃</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 을지로 먹자골목 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://thesmartlocal.com/korea/wp-content/uploads/2021/01/Pocha-Streets-in-Seoul-5.jpg" alt="을지로 포장마차 골목">
+        <span class="card-tag food">庶民飲食通道</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">中區 · 을지로3~4가역</p>
+        <h3 class="card-name">을지로 美食通道</h3>
+        <p class="card-korean">을지로 포장마차 골목 — 首爾最真實的夜宵場景</p>
+        <p class="card-desc">下午工廠收工後，乙支路小巷搖身為首爾最真實的庶民飲食場景。꼬치（串燒）、杯麵攤、地下無招牌居酒屋密集分布。不需特定目的地，跟著音樂和人流鑽進去就對了。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 중구 을지로3·4가역 일대</span>
+          <span><span class="icon">⏰</span> 18:00 後活絡 / 週末最佳</span>
+          <span><span class="icon">💡</span> 找地下室門口有韓文手寫菜單的，通常不在地圖上</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════
+     SECTION 3: 購物
+══════════════════════════════ -->
+<div class="section filterable" data-section="shopping" id="shopping">
+  <div class="section-header">
+    <span class="section-no">03</span>
+    <h2 class="section-title">購物地圖</h2>
+    <span class="section-count">美妝 × 快閃 × 獨立品牌 — 4 區</span>
+  </div>
+  <p class="section-sub">首爾購物不只是掃貨，是理解首爾當下流行文化的最快方式。</p>
+
+  <div class="grid">
+
+    <!-- 명동 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/agfadg-1756435370235.jpg" alt="명동">
+        <span class="card-tag">美妝聖地</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">中區 · 명동역</p>
+        <h3 class="card-name">明洞 명동</h3>
+        <p class="card-korean">首爾最密集的美妝購物商圈</p>
+        <p class="card-desc">OLIVE YOUNG旗艦店、各大韓系彩妝品牌在此密集聚集。主街已高度觀光化，真正的採購目標是OLIVE YOUNG地下一樓限定系列和明洞南端巷弄的在地小店。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 중구 명동 일대 (명동역 6번 출구)</span>
+          <span><span class="icon">⏰</span> 10:00–22:00（部分24H）</span>
+          <span><span class="icon">💡</span> OLIVE YOUNG 限定系列 + 小眾品牌才是真正採購目標</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 성수동 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://tong.visitkorea.or.kr/cms/resource/94/2930894_image2_1.jpg" alt="성수동">
+        <span class="card-tag">快閃聖地</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">城東區 · 성수역</p>
+        <h3 class="card-name">聖水洞 성수동</h3>
+        <p class="card-korean">首爾品牌快閃店（팝업스토어）密集地</p>
+        <p class="card-desc">首爾最熱門的品牌快閃聚集地，每週都有新品牌進駐。從高端聯名到地下設計師品牌一次看齊。工業遺跡改建的獨立選品店與咖啡廳，是首爾年輕創意能量最密集的區域。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 성동구 성수동 (성수역 3번 출구)</span>
+          <span><span class="icon">⏰</span> 各店不同 / 快閃通常週末最完整</span>
+          <span><span class="icon">💡</span> 出發前查 wepick.kr 確認當週快閃清單</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 홍대 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/6f/7b/71/photo6jpg.jpg?w=1200&h=1200&s=1" alt="홍대">
+        <span class="card-tag">獨立品牌</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">麻浦區 · 홍대입구역</p>
+        <h3 class="card-name">弘大 홍대</h3>
+        <p class="card-korean">大學文化孕育的獨立音樂與創意聚落</p>
+        <p class="card-desc">主街精品化後，真正的弘大藏在巷弄裡。二手球鞋、自製飾品、小眾設計師選品店密集。週末自由市集（프리마켓）是發現新銳創作者的最佳場合。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 마포구 홍대 일대 (홍대입구역 9번 출구)</span>
+          <span><span class="icon">⏰</span> 11:00–24:00（夜場更熱鬧）</span>
+          <span><span class="icon">💡</span> 합정역 方向的裡弄比主街更有獨立味道</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 더현대 서울 -->
+    <div class="card">
+      <div class="card-imgwrap">
+        <img class="card-img" src="https://images.adsttc.com/media/images/6255/cda3/3e4b/31af/ed00/000b/newsletter/68781-full_889-4_68781_sc_v2com.jpg?1649790355" alt="더현대 서울">
+        <span class="card-tag modern">未來百貨</span>
+      </div>
+      <div class="card-body">
+        <p class="card-district">永登浦區 · 여의도역</p>
+        <h3 class="card-name">The Hyundai Seoul</h3>
+        <p class="card-korean">더현대 서울 — 重新定義百貨公司的未來型商場</p>
+        <p class="card-desc">頂層玻璃採光＋室內植物森林是核心體驗。品牌策展選品眼光獨到，韓國獨家概念品牌和藝術家聯名集中於此。週末快閃攤位比常設品牌更值得逛。</p>
+        <div class="card-footer">
+          <span><span class="icon">📍</span> 서울 영등포구 여의대로 108</span>
+          <span><span class="icon">⏰</span> 10:30–20:00（週末至21:00）</span>
+          <span><span class="icon">💡</span> 地下 Eataly ＋ 頂層 Pop-up Zone 是每次必掃的兩個行程</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════
+     SECTION 4: 8月活動
+══════════════════════════════ -->
+<div class="section filterable" data-section="events" id="events">
+  <div class="section-header">
+    <span class="section-no">04</span>
+    <h2 class="section-title">8/8 — 8/12 活動日曆</h2>
+    <span class="section-count">5 大活動 · 含限定倒數</span>
+  </div>
+  <p class="section-sub">8/15 光復節前夕，整個首爾都在熱場中。</p>
+
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <!-- Event 1: POP MART -->
+    <div class="event">
+      <div class="event-date">
+        <div class="event-day">8/12</div>
+        <div class="event-month">AUG · 閉幕</div>
+        <div><span class="event-badge badge-urgent">🔴 最後一天</span></div>
+      </div>
+      <div class="event-content">
+        <h3>POP MART MEGA EXHIBITION：HELLO, MOON</h3>
+        <p class="event-location">신세계백화점 강남점 1F 오픈스테이지 · 地鐵 3號線 고속터미널역</p>
+        <p class="event-desc">全球7國巡迴展，SPACE MOLLY × 月球主題。8/1起展出，<strong>8/12就是閉幕日</strong>——你五天旅程的最後一天正好是最後一天。現場限定商品只能現場搶購，建議提早去。台灣 Labubu 愛好者必訪。</p>
+        <p class="event-period">展期：2025.08.01 → 08.12</p>
+        <img class="event-img" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=300&fit=crop&auto=format&q=70" alt="POP MART展覽">
+      </div>
+    </div>
+
+    <!-- Event 2: 서울 썸머비치 -->
+    <div class="event">
+      <div class="event-date">
+        <div class="event-day">8/8</div>
+        <div class="event-month">AUG · 最後日</div>
+        <div><span class="event-badge badge-urgent">🔴 閉幕當天</span></div>
+      </div>
+      <div class="event-content">
+        <h3>서울 썸머비치 Seoul Summer Beach</h3>
+        <p class="event-location">광화문광장 일대 · 光化門廣場</p>
+        <p class="event-desc">城市中心的沙灘裝置 + 噴水廣場 + 水上設施，首爾市政府的夏季大型活動。<strong>8/8是最後一天</strong>，剛好是你抵達首爾的第一天，衝過去就趕上最後尾聲了。城市沙灘的反差感是強烈的 IG 素材。</p>
+        <p class="event-period">展期：2025.07.19 → 08.08 · 11:00–21:00</p>
+      </div>
+    </div>
+
+    <!-- Event 3: 한강 페스티벌 -->
+    <div class="event">
+      <div class="event-date">
+        <div class="event-day">8/8</div>
+        <div class="event-month">→ 8/24</div>
+        <div><span class="event-badge badge-ongoing">全程在場</span></div>
+      </div>
+      <div class="event-content">
+        <h3>2025 한강 페스티벌 漢江夏季祭</h3>
+        <p class="event-location">한강공원 10개소 · 漢江公園10處</p>
+        <p class="event-desc">首爾市政府年度最大夏季活動。你五天旅程的每一天都在節慶期間。每個公園有不同節目：<br>
+        · <strong>야외 공연</strong> — 露天表演<br>
+        · <strong>한강 무소음 DJ파티</strong> — 無聲 DJ Party（人手一副耳機跳舞）<br>
+        · <strong>수상 레저</strong> — 水上活動<br>
+        · <strong>영화 상영</strong> — 露天電影<br>
+        建議每晚選一個不同公園，夜晚漢江 + 節慶氣氛是首爾夏天最獨特的體驗。</p>
+        <p class="event-period">展期：2025.07.26 → 08.24</p>
+        <img class="event-img" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600&h=300&fit=crop&auto=format&q=70" alt="漢江夜景">
+      </div>
+    </div>
+
+    <!-- Event 4: TYPICALLIFE Popup -->
+    <div class="event">
+      <div class="event-date">
+        <div class="event-day">8/8</div>
+        <div class="event-month">→ 8/10</div>
+        <div><span class="event-badge badge-popup">週末限定</span></div>
+      </div>
+      <div class="event-content">
+        <h3>TYPICALLIFE.CURATION Pop-up Store</h3>
+        <p class="event-location">에이펙스 빌딩 · 서울 용산구 한남동</p>
+        <p class="event-desc">韓國設計師選品品牌快閃，在地時尚人士的聚集點。漢南洞 Apex 大樓，剛好在 AmorePacific 和 Leeum 美術館附近，可以一天三連走。</p>
+        <p class="event-period">展期：2025.08.08(五) → 08.10(日)</p>
+      </div>
+    </div>
+
+    <!-- Event 5: 성수동 팝업 -->
+    <div class="event">
+      <div class="event-date">
+        <div class="event-day">每週</div>
+        <div class="event-month">滾動更新</div>
+        <div><span class="event-badge badge-popup">每週新店</span></div>
+      </div>
+      <div class="event-content">
+        <h3>성수동 주간 팝업 聖水洞每週快閃</h3>
+        <p class="event-location">서울숲 주변 · 뚝섬역 일대</p>
+        <p class="event-desc">聖水洞每週都有新品牌快閃，你旅行期間 8月第二週預計有：<br>
+        · <strong>Sony Korea</strong> — 品牌體驗型<br>
+        · <strong>닥터마틴 Dr. Martens</strong> — 限定款展示<br>
+        · <strong>MUSINSA Kicks</strong> — 球鞋潮流展<br>
+        出發前一週查 <strong>wepick.kr</strong> 確認當週最新名單</p>
+        <p class="event-period">持續滾動 · 每週五更新</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════
+     SECTION 4: 五日行程
+══════════════════════════════ -->
+<div class="section filterable" data-section="itinerary" id="itinerary">
+  <div class="section-header">
+    <span class="section-no">05</span>
+    <h2 class="section-title">五日行程建議</h2>
+    <span class="section-count">8/8 → 8/12</span>
+  </div>
+
+  <table class="itinerary-table">
+    <thead>
+      <tr>
+        <th style="width:100px">日期</th>
+        <th>上午</th>
+        <th>下午</th>
+        <th>晚上</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight-row">
+        <td>
+          <div class="day-num">Day 1</div>
+          <div class="day-date">8/8 · 五</div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">09:00</div>
+            <div class="slot-place">광화문 썸머비치</div>
+            <div class="slot-note">🔴 今天最後一天，直接去</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">13:00</div>
+            <div class="slot-place">TYPICALLIFE Popup 開幕</div>
+            <div class="slot-note">漢南洞 Apex 빌딩</div>
+          </div>
+          <div class="itinerary-slot">
+            <div class="slot-time">15:00</div>
+            <div class="slot-place">아모레퍼시픽 본사</div>
+            <div class="slot-note">건물 1~3F 免費參觀</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">19:00</div>
+            <div class="slot-place">세렌디피크닉 晚餐</div>
+            <div class="slot-note">龍山，步行即達</div>
+          </div>
+          <div class="itinerary-slot">
+            <div class="slot-time">21:00</div>
+            <div class="slot-place">한강 페스티벌 夜場</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="day-num">Day 2</div>
+          <div class="day-date">8/9 · 六</div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">05:30</div>
+            <div class="slot-place">노량진 수산시장</div>
+            <div class="slot-note">拍賣 + 生魚片早餐</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">13:00</div>
+            <div class="slot-place">성수동 팝업 週末場</div>
+            <div class="slot-note">Sony / Dr.Martens / MUSINSA</div>
+          </div>
+          <div class="itinerary-slot">
+            <div class="slot-time">16:00</div>
+            <div class="slot-place">더현대 서울</div>
+            <div class="slot-note">여의도 室內天空植物園</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">20:00</div>
+            <div class="slot-place">한강 무소음 DJ파티</div>
+            <div class="slot-note">뚝섬한강공원 追 Location</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="day-num">Day 3</div>
+          <div class="day-date">8/10 · 日</div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">10:00</div>
+            <div class="slot-place">서울공예박물관</div>
+            <div class="slot-note">院落光影最美 · 免費</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">14:00</div>
+            <div class="slot-place">Cafe Onion 안국</div>
+            <div class="slot-note">廢棄工廠改建咖啡廳</div>
+          </div>
+          <div class="itinerary-slot">
+            <div class="slot-time">16:00</div>
+            <div class="slot-place">텀어스 연희 咖啡</div>
+            <div class="slot-note">延禧洞 2F 窗景</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">19:00</div>
+            <div class="slot-place">시누아즈 晚餐</div>
+            <div class="slot-note">연희로 — 提前訂位</div>
+          </div>
+          <div class="itinerary-slot">
+            <div class="slot-time">21:00</div>
+            <div class="slot-place">한강 페스티벌 夜場</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="day-num">Day 4</div>
+          <div class="day-date">8/11 · 一</div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">09:00</div>
+            <div class="slot-place">서소문성지 역사박물관</div>
+            <div class="slot-note">地下衝擊空間 · 免費</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">13:00</div>
+            <div class="slot-place">원구단 圓丘壇</div>
+            <div class="slot-note">웨스틴 조선 호텔 內 · 步行可達</div>
+          </div>
+          <div class="itinerary-slot">
+            <div class="slot-time">15:00</div>
+            <div class="slot-place">서대문형무소</div>
+            <div class="slot-note">歷史現場 · 3,000₩</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">19:00</div>
+            <div class="slot-place">마장동 축산물시장</div>
+            <div class="slot-note">自選牛肉 → 代烤晚餐</div>
+          </div>
+        </td>
+      </tr>
+      <tr class="highlight-row">
+        <td>
+          <div class="day-num">Day 5</div>
+          <div class="day-date">8/12 · 二</div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">10:00</div>
+            <div class="slot-place">🔴 POP MART 最終日</div>
+            <div class="slot-note">신세계 강남점 — 今天閉幕！</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">13:00</div>
+            <div class="slot-place">선릉 강남왕릉</div>
+            <div class="slot-note">高樓 × 古陵 構圖</div>
+          </div>
+          <div class="itinerary-slot">
+            <div class="slot-time">15:30</div>
+            <div class="slot-place">앤트러사이트 홍대</div>
+            <div class="slot-note">1970年代製鞋工廠改建咖啡廳</div>
+          </div>
+        </td>
+        <td>
+          <div class="itinerary-slot">
+            <div class="slot-time">19:00</div>
+            <div class="slot-place">커피리브레 延南洞</div>
+            <div class="slot-note">旅程最後一杯精品手沖</div>
+          </div>
+          <div class="itinerary-slot">
+            <div class="slot-time">21:00</div>
+            <div class="slot-place">한강 페스티벌 最後夜</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════
+     TOOLS
+══════════════════════════════ -->
+<div class="tools-bg filterable" data-section="tools" id="tools">
+  <div class="tools-inner">
+    <h2 class="tools-title">出發前必備工具</h2>
+    <div class="tools-grid">
+      <div class="tool-item">
+        <div class="tool-name">Popply</div>
+        <div class="tool-url">popply.co.kr</div>
+        <div class="tool-desc">韓國最大 Popup Store 追蹤平台，可依日期篩選，出發前兩週必查一次</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-name">위픽 WePick</div>
+        <div class="tool-url">letter.wepick.kr</div>
+        <div class="tool-desc">每週聖水洞快閃店精選電子報，最即時的在地資訊</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-name">Visit Seoul 官網</div>
+        <div class="tool-url">english.visitseoul.net</div>
+        <div class="tool-desc">首爾市政府觀光網站，展覽節慶月曆最完整</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-name">Naver Map</div>
+        <div class="tool-url">map.naver.com</div>
+        <div class="tool-desc">在首爾比 Google Map 更準確，交通 + 餐廳評論都在這</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-name">아치비스트 Archivist</div>
+        <div class="tool-url">archivist.kr</div>
+        <div class="tool-desc">文青展覽和活動追蹤，偏小眾藝術空間，本次 TYPICALLIFE 就在這找到的</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-name">IG Hashtags 追蹤</div>
+        <div class="tool-url">#서울팝업 · #8월팝업 · #성수팝업</div>
+        <div class="tool-desc">IG 搜尋這些 hashtag 可即時掌握本地人在說什麼</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer>
+  <span>SEOUL DEEP DIVE GUIDE · 2025.08.08 — 08.12</span>
+  <span>@nomowho · 我出去一下就回來</span>
+  <span>制作：Claude Code · 2026.06</span>
+</footer>
+
+<script>
+(function(){
+  const navLinks = document.querySelectorAll('.nav a[data-section]');
+  const sections = document.querySelectorAll('.filterable');
+  const dividers = document.querySelectorAll('.section-divider');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      const target = this.dataset.section;
+
+      // update active state
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+
+      if(target === 'all'){
+        // show all
+        sections.forEach(s => s.classList.remove('hidden'));
+        dividers.forEach(d => d.classList.remove('hidden'));
+        window.scrollTo({top:0, behavior:'smooth'});
+      } else {
+        // hide all, show only target
+        sections.forEach(s => {
+          if(s.dataset.section === target){
+            s.classList.remove('hidden');
+          } else {
+            s.classList.add('hidden');
+          }
+        });
+        // hide all dividers when filtered
+        dividers.forEach(d => d.classList.add('hidden'));
+        // scroll to target section
+        const el = document.getElementById(target);
+        if(el){
+          const navH = document.querySelector('.nav').offsetHeight;
+          const top = el.getBoundingClientRect().top + window.scrollY - navH - 16;
+          window.scrollTo({top, behavior:'smooth'});
+        }
+      }
+    });
+  });
+})();
+
+// Collapsible sections
+(function(){
+  ['spots','food','shopping'].forEach(id => {
+    const section = document.getElementById(id);
+    if(!section) return;
+    const header = section.querySelector('.section-header');
+    if(!header) return;
+    header.classList.add('collapsible');
+    const arrow = document.createElement('span');
+    arrow.className = 'toggle-arrow';
+    arrow.textContent = '▲';
+    header.appendChild(arrow);
+    header.addEventListener('click', () => {
+      section.classList.toggle('collapsed');
+    });
+  });
+})();
+</script>
+</body>
+</html>
